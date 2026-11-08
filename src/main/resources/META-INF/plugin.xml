@@ -1,0 +1,50 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>de.ml.backupfromchangelist.backupfromchangelist</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>Changelist Backup</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://ml.de">Michael Krause</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-description -->
+    <description><![CDATA[
+        Small Plugin to Backup Files from a Changelist on a Remote Server before Sync</em>
+    ]]></description>
+    <dependencies>
+        <plugin id="com.intellij.modules.phpstorm" />
+        <plugin id="com.intellij.modules.xml" />
+        <plugin id="com.intellij.modules.vcs" />
+        <plugin id="com.intellij.modules.ultimate" />
+        <plugin id="com.intellij.modules.ssh" />
+        <plugin id="com.jetbrains.plugins.webDeployment" />
+    </dependencies>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <!--<depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.remoteServers</depends>
+    <depends>com.intellij.modules.ssh</depends>
+    <depends>com.intellij.modules.vcs</depends>
+    <depends>com.intellij.modules.remoteServers</depends>
+    <depends>com.intellij.modules.phpstorm</depends>
+    <depends>com.jetbrains.plugins.webDeployment</depends>-->
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable instance="de.ml.backupfromchangelist.settings.BackupServerConfigurable"
+                                 displayName="BackupFromChangelist-Servers"/>
+    </extensions>
+
+    <actions>
+        <action id="de.ml.backupfromchangelist.SelectDeploymentServerAction"
+                class="de.ml.backupfromchangelist.SelectDeploymentServerAction" text="SelectDeploymentServerAction"
+                description="SelectDeploymentServerAction">
+            <add-to-group group-id="VersionControlsGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
