@@ -1,33 +1,29 @@
 package de.ml.backupfromchangelist
 
+import com.intellij.credentialStore.CredentialAttributes
+import com.intellij.credentialStore.Credentials
+import com.intellij.credentialStore.generateServiceName
+import com.intellij.ide.passwordSafe.PasswordSafe
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.project.Project
-import com.intellij.openapi.ui.Messages
-import com.intellij.ssh.config.unified.SshConfig
-import com.intellij.ssh.config.unified.SshConfigManager
-import com.intellij.credentialStore.CredentialAttributes
-import com.intellij.credentialStore.generateServiceName
-import com.intellij.credentialStore.Credentials
-import com.intellij.ide.passwordSafe.PasswordSafe
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.ui.popup.JBPopupFactory
 import com.intellij.openapi.ui.popup.ListPopup
 import com.intellij.openapi.ui.popup.PopupStep
 import com.intellij.openapi.ui.popup.util.BaseListPopupStep
 import com.intellij.openapi.util.NlsSafe
 import com.intellij.openapi.vcs.changes.ChangeListManager
+import com.intellij.ssh.config.unified.SshConfigManager
 import com.jcraft.jsch.ChannelExec
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.Session
-import java.io.File
-import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class SelectDeploymentServerAction : AnAction("Backup aus Changelist erstellen") {
 
@@ -127,11 +123,6 @@ class SelectDeploymentServerAction : AnAction("Backup aus Changelist erstellen")
                 onChosen(selectedValue)
                 return PopupStep.FINAL_CHOICE
             }
-
-            /*override fun getSeparatorAbove(value: DeploymentServerInfo): String? {
-                // Gruppierung nach value.group
-                return value.group
-            }*/
         }
 
         val popup: ListPopup = JBPopupFactory.getInstance().createListPopup(step)

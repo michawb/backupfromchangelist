@@ -26,13 +26,7 @@
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
-    <!--<depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.modules.remoteServers</depends>
-    <depends>com.intellij.modules.ssh</depends>
-    <depends>com.intellij.modules.vcs</depends>
-    <depends>com.intellij.modules.remoteServers</depends>
-    <depends>com.intellij.modules.phpstorm</depends>
-    <depends>com.jetbrains.plugins.webDeployment</depends>-->
+
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">

@@ -7,21 +7,9 @@ import com.intellij.remoteServer.ServerType
 import com.intellij.remoteServer.configuration.RemoteServersManager
 import com.jetbrains.plugins.webDeployment.config.GroupedServersConfigManager
 import de.ml.backupfromchangelist.settings.BackupServerSettings
-
-
 import java.io.File
 
-
-
-
-
-
 class ExportChangelistPopupGroup : ActionGroup() {
-
-
-    /**
-     *
-     */
     fun listAvailableServerTypes(project : Project) {
 
         for (type in ServerType.EP_NAME.extensions) {
@@ -39,25 +27,9 @@ class ExportChangelistPopupGroup : ActionGroup() {
         val project = e?.project ?: return emptyArray()
         listAvailableServerTypes(project)
 
-        //val deploymentManager = project.getService(WebServers::class.java)
-        //val list = DeploymentConfigurationManager.getInstance(project).getDeploymentConfigurations().javaClass.methods
-
-        //for (server in list) {
-            //println("Deployment Server: ${server.name}")
-            //println("Host: ${server.host}")
-            //println("Port: ${server.port}")
-            //println("Remote root: ${server.remoteRoot}")
-        //}
-
-
-        //for (config in list) {
-        //    println("Deployment config: ${config.name}, type: ${config.type}, class: ${config::class.qualifiedName}")
-        //}
-        //for (cfg in list){
-            //println( "HOST: ${cfg}" )
-        //}
-
-        // Alle definierten Deployment-Server abrufen
+        /**
+         * Alle definierten Deployment-Server abrufen
+         */
         val servers = RemoteServersManager.getInstance().servers
 
         if (servers.isEmpty()) {
@@ -76,7 +48,9 @@ class ExportChangelistPopupGroup : ActionGroup() {
             println("Backupserver: ${it.name} @ ${it.host}:${it.port}")
         }
 
-        // Für jeden Server eine Action erzeugen
+        /**
+         * Für jeden Server eine Action erzeugen
+         */
         return servers.map { server ->
             object : AnAction("Backup nach ") {
                 override fun actionPerformed(e: AnActionEvent) {
@@ -101,13 +75,8 @@ class ExportChangelistPopupGroup : ActionGroup() {
             files.forEach { out.println(it.path) }
         }
 
-        // Hier würdest du den Upload starten
-        // Entweder mit Deployment API, oder simpler: eigenes Script mit Server-Infos
         val server1 = server
         println("Backup nach $server1 vorbereitet.")
     }
-
-
-
 
 }

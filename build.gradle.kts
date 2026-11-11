@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "2.1.0"
@@ -5,7 +7,7 @@ plugins {
 }
 
 group = "de.ml.backupfromchangelist"
-version = "1.0-SNAPSHOT"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -16,14 +18,9 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        // 👉 Wichtig: PhpStorm (PS), nicht IC oder IU
         create("PS", "2025.2")
-
-        // WebDeployment ist bei PhpStorm bereits gebundled
         bundledPlugin("com.jetbrains.plugins.webDeployment")
         implementation("com.jcraft:jsch:0.1.55")
-
-        // Test-Framework für IDE-Tests
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
     }
 }
@@ -45,10 +42,9 @@ java {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "17"
+    compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
 }
 
-// Optional: buildSearchableOptions deaktivieren (bekannter Bug)
 tasks.named("buildSearchableOptions") {
     enabled = false
 }
